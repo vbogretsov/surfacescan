@@ -73,7 +73,11 @@ foo@bar:~$ uvicorn surfacescan.main:app --reload --port 8001
   statistics requirements (for example `/stats` returns accumulated statistics
   from initial service startup and allows to query it by time ranges). In such
   case we could accumulate statistisc in `statsd`, send it to som ebackend and
-  query that backend.
+  query that backend. There is also an assumption that surface attack building
+  could be executed in process pool (`await run_in_executor`) and requests
+  could be async, but such approach restricts third party libraries usage
+  because of pickle serialization and we think statistics requirements update
+  would be preferable.
 * We assume `attacks` relation is transitive, e.g. if A can attack B and B can
   attack C then A can attack C too.
 * In some cases responses returned by "search" endpoints parametrized by query
