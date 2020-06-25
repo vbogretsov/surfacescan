@@ -1,0 +1,8 @@
+[run]
+omit =
+    */apps.py
+    */migrations/*
+    contec/content/management/commands/gencontent.py
+    contec/wsgi.py
+    manage.py
+data_file = /tmp/.coverage

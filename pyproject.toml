@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "surfacescan"
+version = "0.1.0"
+description = "Attack surface scanner"
+authors = ["Vladimir Bogretsov <bogrecov@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.58.0"
+uvicorn = "^0.11.5"
+networkx = "^2.4"
+pycparser = "^2.20"
+atomiclong = "^0.1.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.3"
+flake8 = "^3.8.3"
+pytest = "^5.4.3"
+pytest-cov = "^2.10.0"
+isort = "^4.3.21"
+faker = "^4.1.1"
+
+[tool.poetry.scripts]
+gendata = 'gendata:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

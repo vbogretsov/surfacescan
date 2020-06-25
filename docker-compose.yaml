@@ -1,0 +1,42 @@
+version: "3.4"
+
+x-devimage: &devimage
+  image: surfacescan:dev
+  build:
+    context: .
+
+x-curdir: &curdir
+  volumes:
+    - ./:/var/www/surfacescan
+
+services:
+  api:
+    image: surfacescan:latest
+    build:
+      context: .
+      args:
+        poetry_opts: --no-dev
+    <<: *curdir
+    container_name: surfacescan-api
+    restart: unless-stopped
+    ports:
+      - 8001:8001
+  lint:
+    <<: *devimage
+    <<: *curdir
+    container_name: surfacescan-lint
+    entrypoint: ['flake8']
+  tests:
+    <<: *devimage
+    <<: *curdir
+    container_name: surfacescan-test
+    entrypoint: ['python', '-m', 'pytest']
+  locust:
+    image: locustio/locust:1.0.3
+    container_name: surfacescan-locust
+    <<: *curdir
+    ports:
+      - 8089:8089
+    working_dir: /var/www/surfacescan
+    depends_on:
+      - api
