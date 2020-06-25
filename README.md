@@ -13,13 +13,23 @@ Attack surface scanner
 
 ### Docker way
 
+Build images
 ```console
 foo@bar:~$ docker-compose build
-# run api
+```
+
+Run api
+```console
 foo@bar:~$ docker-compose up -d api
-# run lint (flake8)
+```
+
+Run lint (flake8)
+```console
 foo@bar:~$ docker-compose run --rm lint
-# run tests (pytest)
+```
+
+Run tests (pytest)
+```console
 foo@bar:~$ docker-compose run --rm tests
 ```
 
@@ -34,14 +44,22 @@ to be tested.
 
 ### Non docker way
 
+Install dependencies
 ```console
-# install dependencies
 foo@bar:~$ poetry install
-# run flake8
+```
+
+Run flake8
+```console
 foo@bar:~$ flake8
-# run tests
+```
+Run tests
+```console
 foo@bar:~$ pytest
-# start service
+```
+
+Start service
+```console
 foo@bar:~$ uvicorn surfacescan.main:app --reload --port 8001
 ```
 
@@ -124,7 +142,7 @@ problem.
 Allows to generate big (or actually any sizes which can fit memory available)
 data sets for performance testing purposes.
 
-### What would be nice to have but is not implemented because of time
+### What would be nice to have but is not implemented due to time restrictions
 
 * `mypy` validation
 * test `surfacescan.tracking.Tracker` increments its counters in a thread safe

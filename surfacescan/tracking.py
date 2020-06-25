@@ -13,6 +13,9 @@ class Tracker:
         """Accumulates request duration info.
         """
         self.count += 1
+        # NOTE: we assume overwlow will not occur because a service for a
+        # particulaar environment will not have quite long uptimes, at least
+        # becase cloud environment usually can change during the time.
         self.duration += int(duration * 1000)
 
     def get_stat(self) -> dict:
